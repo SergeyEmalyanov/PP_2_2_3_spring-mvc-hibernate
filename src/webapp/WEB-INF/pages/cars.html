@@ -2,13 +2,11 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Index</title>
+    <title>Cars</title>
 </head>
 <body>
-<div>
-    <th:block th:each="msg : ${messages}">
-        <h2 th:text="${msg}"></h2>
-    </th:block>
+<div th:each="car : ${cars}">
+    <a th:text="${car.toString()}">user</a>
 </div>
 </body>
 </html>
