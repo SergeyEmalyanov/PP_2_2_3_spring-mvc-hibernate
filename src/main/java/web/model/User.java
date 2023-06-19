@@ -1,9 +1,11 @@
 package web.model;
 
 import jakarta.persistence.*;
+
 @Entity
 @Table(name = "users")
 public class User {
+    private static int count = 0;
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +23,7 @@ public class User {
     }
 
     public User(String name, int age) {
+        this.id = ++count;
         this.name = name;
         this.age = age;
     }
@@ -51,11 +54,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", age=" + age +
-                '}';
+        return "Id:" + id + " Name:" + name + " age:" + age;
     }
 }
 

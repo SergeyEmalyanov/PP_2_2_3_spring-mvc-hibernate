@@ -18,8 +18,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.thymeleaf.spring6.SpringTemplateEngine;
 import org.thymeleaf.spring6.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring6.view.ThymeleafViewResolver;
+import web.model.User;
+import web.service.UserServiceImpl;
 
 import javax.sql.DataSource;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 @Configuration
 @ComponentScan("web")
@@ -103,5 +107,12 @@ public class AppConfig implements WebMvcConfigurer {
         transactionManager.setSessionFactory(sessionFactory().getObject());
 
         return transactionManager;
+    }
+    @Bean
+    public UserServiceImpl userService (){
+        List<User> users = new ArrayList<>();
+        users.add(new User("A", 1));
+        users.add(new User("B", 2));
+        return new UserServiceImpl(users);
     }
 }

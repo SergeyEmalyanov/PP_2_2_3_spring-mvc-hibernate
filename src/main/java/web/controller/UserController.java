@@ -28,17 +28,17 @@ public class UserController {
 
     @GetMapping("/{id}")
     public String displayUser(@PathVariable("id") int id, Model model) {
-        model.addAttribute("person", userService.getUser(id));
+        model.addAttribute("user", userService.getUser(id));
         return "pagesCrud/displayUser";
     }
 
-    @GetMapping("/new")
-    public String newPerson(@ModelAttribute("user") User user) {
+    @GetMapping("/add")
+    public String newUser(@ModelAttribute("user") User user) {
         return "pagesCrud/add";
     }
 
     @PostMapping()
-    public String add(@ModelAttribute("person") User user,
+    public String add(@ModelAttribute("user") User user,
                       BindingResult bindingResult) {
         if (bindingResult.hasErrors())
             return "pagesCrud/add";
@@ -49,12 +49,12 @@ public class UserController {
 
     @GetMapping("/{id}/update")
     public String edit(Model model, @PathVariable("id") int id) {
-        model.addAttribute("person", userService.getUser(id));
+        model.addAttribute("user", userService.getUser(id));
         return "pagesCrud/edit";
     }
 
-    @PatchMapping("/{id}") //@Valid
-    public String update(@ModelAttribute("person") User user, BindingResult bindingResult,
+    @PatchMapping("/{id}")
+    public String update(@ModelAttribute("user") User user, BindingResult bindingResult,
                          @PathVariable("id") int id) {
         if (bindingResult.hasErrors())
             return "pagesCrud/edit";
